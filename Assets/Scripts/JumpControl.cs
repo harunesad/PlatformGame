@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
-public class JumpConrol : MonoBehaviour
+public class JumpControl : MonoBehaviour
 {
     [SerializeField] LayerMask mask;
     [SerializeField] bool isGround = false, doubleJump = false;
@@ -13,7 +14,16 @@ public class JumpConrol : MonoBehaviour
     }
     void Update()
     {
+        if (!GameManager.manager.isStarted)
+        {
+            return;
+        }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, mask);
+        Jump(hit);
+    }
+    #region Jump
+    void Jump(RaycastHit2D hit)
+    {
         if (hit.collider != null)
         {
             isGround = true;
@@ -30,7 +40,9 @@ public class JumpConrol : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && doubleJump)
         {
             doubleJump = false;
+            PlayerControl.animator.SetTrigger("DoubleJump");
             PlayerControl.rb.velocity = new Vector2(PlayerControl.rb.velocity.x, jumpSpeed);
         }
     }
+    #endregion
 }
