@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
     {
         Destroy(obj, 0.25f);
         UIManager.UI.ScoreAdd(score);
-        sounds[1].Play();
+        sounds[0].Play();
         UIManager.UI.HighScoreUpdated();
     }
     #endregion
