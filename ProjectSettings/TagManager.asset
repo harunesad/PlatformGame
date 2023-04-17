@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Apple
   - Fall
+  - Enemy
+  - Coin
+  - SuperCoin
+  - End
+  - Apple
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 

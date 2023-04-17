@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     {
         if (restart)
         {
+            GameManager.manager.GameState(true);
             startPanel.SetActive(false);
         }
         bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
@@ -73,9 +74,9 @@ public class UIManager : MonoBehaviour
     }
     #endregion
     #region ScoreAdd
-    public void ScoreAdd(float ýnc)
+    public void ScoreAdd(float inc)
     {
-        scoreCount += ýnc;
+        scoreCount += inc;
         scoreText.text = "" + scoreCount.ToString();
     }
     #endregion

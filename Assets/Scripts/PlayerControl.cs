@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     public static Rigidbody2D rb;
     public static Animator animator;
     [SerializeField] float moveSpeed = 10;
-    [SerializeField] AudioSource coinSound, deathSound;
+    [SerializeField] AudioSource[] sounds;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -24,38 +24,57 @@ public class PlayerControl : MonoBehaviour
         {
             return;
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SpawnManager.spawnManager.Spawn();
+        }
         float h = Input.GetAxis("Horizontal");
         MoveAndRotate(h);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Apple"))
+        if (collision.CompareTag("Coin"))
         {
-            CoinCollect(collision.gameObject);
+            CoinCollect(collision.gameObject, 4);
+        }
+        if (collision.gameObject.CompareTag("SuperCoin"))
+        {
+            CoinCollect(collision.gameObject, 8);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy") && !GetComponentInChildren<JumpControl>().jumpToEnemy)
+        {
+            Dead();
+        }
         if (collision.gameObject.CompareTag("Fall"))
         {
             Dead();
+        }
+        if (collision.gameObject.CompareTag("End"))
+        {
+            GameManager.manager.GameEnd();
         }
     }
     #region Dead
     void Dead()
     {
-        deathSound.Play();
+        animator.SetBool("Run", false);
+        EnemyControl.animator.SetBool("Run", false);
+
+        sounds[1].Play();
         GameManager.manager.GameState(false);
         UIManager.UI.DeadPanel();
         Destroy(gameObject, 0.5f);
     }
     #endregion
     #region CoinCollect
-    void CoinCollect(GameObject obj)
+    void CoinCollect(GameObject obj, float score)
     {
         Destroy(obj, 0.25f);
-        UIManager.UI.ScoreAdd(5);
-        coinSound.Play();
+        UIManager.UI.ScoreAdd(score);
+        sounds[1].Play();
         UIManager.UI.HighScoreUpdated();
     }
     #endregion

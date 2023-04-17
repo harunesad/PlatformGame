@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
     public bool isStarted = false;
+    [SerializeField] Animator animator;
     private void Awake()
     {
         manager = this;
     }
     void Start()
     {
-        
+
     }
     void Update()
     {
-        
+
     }
     #region GameState
     public void GameState(bool state)
@@ -24,15 +26,31 @@ public class GameManager : MonoBehaviour
         isStarted = state;
     }
     #endregion
-    //#region GameStop
-    //public void GameStop()
-    //{
-    //    if (!isStarted)
-    //    {
-    //        Debug.Log("adssad");
-    //        PlayerControl.animator.SetBool("Run", false);
-    //        return;
-    //    }
-    //}
-    //#endregion
+    #region GameEnd
+    public void GameEnd()
+    {
+        isStarted = false;
+        StartCoroutine(SceneLoad());
+        PlayerControl.animator.SetBool("Run", false);
+        EnemyControl.animator.SetBool("Run", false);
+        GameState(false);
+    }
+    #endregion
+    #region SceneLoad
+    IEnumerator SceneLoad()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    #endregion
+    #region EnemyDead
+    public void EnemyDead(GameObject enemy)
+    {
+        isStarted = false;
+        UIManager.UI.ScoreAdd(10);
+        UIManager.UI.HighScoreUpdated();
+        EnemyControl.animator.SetTrigger("Dead");
+        Destroy(enemy, 1);
+    }
+    #endregion
 }
