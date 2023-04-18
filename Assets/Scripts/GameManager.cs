@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     {
         isStarted = false;
         StartCoroutine(SceneLoad());
+        SawControl.animator.SetBool("Rotate", false);
+        SawControl.rb.simulated = false;
         PlayerControl.animator.SetBool("Run", false);
         EnemyControl.animator.SetBool("Run", false);
         GameState(false);

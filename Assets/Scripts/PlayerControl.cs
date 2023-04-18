@@ -62,6 +62,8 @@ public class PlayerControl : MonoBehaviour
     {
         animator.SetBool("Run", false);
         EnemyControl.animator.SetBool("Run", false);
+        SawControl.animator.SetBool("Rotate", false);
+        SawControl.rb.simulated = false;
 
         sounds[1].Play();
         GameManager.manager.GameState(false);
