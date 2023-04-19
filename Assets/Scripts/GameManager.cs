@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     IEnumerator SceneLoad()
     {
         yield return new WaitForSeconds(1);
+        SaveSystem.save.SceneSave();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         isStarted = false;
         UIManager.UI.ScoreAdd(10);
-        UIManager.UI.HighScoreUpdated();
+        SaveSystem.save.HighScoreUpdated();
         EnemyControl.animator.SetTrigger("Dead");
         Destroy(enemy, 1);
     }

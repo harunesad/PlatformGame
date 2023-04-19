@@ -10,10 +10,9 @@ public class UIManager : MonoBehaviour
     public static UIManager UI;
     public static bool restart = false;
     [SerializeField] TextMeshProUGUI scoreText, bestScoreText, lastScoreText, lastBestScoreText;
-    [SerializeField] float scoreCount;
+    public float scoreCount;
     [SerializeField] GameObject startPanel, restartPanel;
-    [SerializeField] Button startButton, exitButton, restartButton, lastExitButton;
-    string bestScoreKey = "HighScore";
+    [SerializeField] Button startButton, exitButton, restartButton, lastExitButton, continueButton;
     private void Awake()
     {
         UI = GetComponent<UIManager>();
@@ -25,11 +24,13 @@ public class UIManager : MonoBehaviour
             GameManager.manager.GameState(true);
             startPanel.SetActive(false);
         }
-        bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
+        SaveSystem.save.SaveText(bestScoreText);
+        //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
         startButton.onClick.AddListener(GameStart);
         exitButton.onClick.AddListener(GameExit);
         restartButton.onClick.AddListener(Restart);
         lastExitButton.onClick.AddListener(GameExit);
+        continueButton.onClick.AddListener(Continue);
     }
     void Update()
     {
@@ -39,8 +40,9 @@ public class UIManager : MonoBehaviour
     public void DeadPanel()
     {
         lastScoreText.text = "Score: " + scoreCount;
-        HighScoreUpdated();
-        lastBestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
+        SaveSystem.save.HighScoreUpdated();
+        SaveSystem.save.SaveText(lastBestScoreText);
+        //lastBestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
         restartPanel.SetActive(true);
     }
     #endregion
@@ -51,13 +53,10 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     #endregion
-    #region HighScoreUpdated
-    public void HighScoreUpdated()
+    #region Continue
+    void Continue()
     {
-        if (scoreCount >= PlayerPrefs.GetFloat(bestScoreKey))
-        {
-            PlayerPrefs.SetFloat(bestScoreKey, scoreCount);
-        }
+        SaveSystem.save.SceneLoad();
     }
     #endregion
     #region GameStart
