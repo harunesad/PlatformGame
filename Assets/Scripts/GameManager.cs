@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         SawControl.rb.simulated = false;
         PlayerControl.animator.SetBool("Run", false);
         EnemyControl.animator.SetBool("Run", false);
+        SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
         GameState(false);
     }
     #endregion
@@ -49,10 +50,10 @@ public class GameManager : MonoBehaviour
     #region EnemyDead
     public void EnemyDead(GameObject enemy)
     {
-        isStarted = false;
         UIManager.UI.ScoreAdd(10);
         SaveSystem.save.HighScoreUpdated();
         EnemyControl.animator.SetTrigger("Dead");
+        Destroy(FindObjectOfType<EnemyControl>());
         Destroy(enemy, 1);
     }
     #endregion

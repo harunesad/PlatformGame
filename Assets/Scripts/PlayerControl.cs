@@ -60,8 +60,12 @@ public class PlayerControl : MonoBehaviour
     #region Dead
     void Dead()
     {
+        Debug.Log(GameManager.manager.isStarted);
         animator.SetBool("Run", false);
-        EnemyControl.animator.SetBool("Run", false);
+        if (FindObjectOfType<EnemyControl>() != null)
+        {
+            EnemyControl.animator.SetBool("Run", false);
+        }
         SawControl.animator.SetBool("Rotate", false);
         SawControl.rb.simulated = false;
 

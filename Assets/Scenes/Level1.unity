@@ -6606,6 +6606,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1965249932, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6531589298786618484, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -6679,6 +6683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Traps
       objectReference: {fileID: 0}
+    - target: {fileID: 7311267223409091852, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7311267223409091854, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -6744,6 +6752,10 @@ PrefabInstance:
       propertyPath: sounds.Array.data[1]
       value: 
       objectReference: {fileID: 1909963558}
+    - target: {fileID: 743833673, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
+      propertyPath: jumpSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 743833673, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
       propertyPath: enemyMask.m_Bits
       value: 128

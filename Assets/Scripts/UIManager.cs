@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager UI;
     public static bool restart = false;
+    public static bool continueScore = false;
     [SerializeField] TextMeshProUGUI scoreText, bestScoreText, lastScoreText, lastBestScoreText;
     public float scoreCount;
     [SerializeField] GameObject startPanel, restartPanel;
@@ -23,6 +24,11 @@ public class UIManager : MonoBehaviour
         {
             GameManager.manager.GameState(true);
             startPanel.SetActive(false);
+        }
+        if (continueScore)
+        {
+            SaveSystem.save.ContinueText(scoreText);
+            continueScore = false;
         }
         SaveSystem.save.SaveText(bestScoreText);
         //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
@@ -57,6 +63,7 @@ public class UIManager : MonoBehaviour
     void Continue()
     {
         SaveSystem.save.SceneLoad();
+        continueScore = true;
     }
     #endregion
     #region GameStart
