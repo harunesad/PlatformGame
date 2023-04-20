@@ -29,7 +29,7 @@ public class SaveSystem : MonoBehaviour
     #region ConstinueText
     public void ContinueText(TextMeshProUGUI scoreText)
     {
-        scoreText.text = "Score: " + PlayerPrefs.GetFloat(continueScoreKey);
+        scoreText.text = "" + PlayerPrefs.GetFloat(continueScoreKey);
     }
     #endregion
     #region SaveText

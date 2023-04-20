@@ -28,7 +28,9 @@ public class UIManager : MonoBehaviour
         if (continueScore)
         {
             SaveSystem.save.ContinueText(scoreText);
+            startPanel.SetActive(false);
             continueScore = false;
+            GameManager.manager.GameState(true);
         }
         SaveSystem.save.SaveText(bestScoreText);
         //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
@@ -62,8 +64,8 @@ public class UIManager : MonoBehaviour
     #region Continue
     void Continue()
     {
-        SaveSystem.save.SceneLoad();
         continueScore = true;
+        SaveSystem.save.SceneLoad();
     }
     #endregion
     #region GameStart

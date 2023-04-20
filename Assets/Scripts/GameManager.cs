@@ -34,8 +34,12 @@ public class GameManager : MonoBehaviour
         SawControl.animator.SetBool("Rotate", false);
         SawControl.rb.simulated = false;
         PlayerControl.animator.SetBool("Run", false);
-        EnemyControl.animator.SetBool("Run", false);
+        if (FindObjectOfType<EnemyControl>() != null)
+        {
+            EnemyControl.animator.SetBool("Run", false);
+        }
         SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
+        UIManager.continueScore = true;
         GameState(false);
     }
     #endregion
