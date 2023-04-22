@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
     #region Restart
-    void Restart()
+    public void Restart()
     {
         restart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

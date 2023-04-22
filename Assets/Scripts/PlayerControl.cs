@@ -60,7 +60,6 @@ public class PlayerControl : MonoBehaviour
     #region Dead
     void Dead()
     {
-        Debug.Log(GameManager.manager.isStarted);
         animator.SetBool("Run", false);
         if (FindObjectOfType<EnemyControl>() != null)
         {
@@ -71,7 +70,17 @@ public class PlayerControl : MonoBehaviour
 
         sounds[1].Play();
         GameManager.manager.GameState(false);
-        UIManager.UI.DeadPanel();
+
+        LifeSystem.life.HearthRemove();
+        if (LifeSystem.life.hearth == 0)
+        {
+            LifeSystem.life.HearthImage();
+            UIManager.UI.DeadPanel();
+        }
+        else
+        {
+            StartCoroutine(SceneLoad());
+        }
         Destroy(gameObject, 0.5f);
     }
     #endregion
@@ -107,4 +116,9 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
     }
     #endregion
+    IEnumerator SceneLoad()
+    {
+        yield return new WaitForSeconds(0.4f);
+        UIManager.UI.Restart();
+    }
 }
