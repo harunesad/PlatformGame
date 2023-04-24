@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
         startButton.onClick.AddListener(GameStart);
         exitButton.onClick.AddListener(GameExit);
-        restartButton.onClick.AddListener(Restart);
+        restartButton.onClick.AddListener(RestartButton);
         lastExitButton.onClick.AddListener(GameExit);
         continueButton.onClick.AddListener(Continue);
     }
@@ -55,6 +55,11 @@ public class UIManager : MonoBehaviour
     }
     #endregion
     #region Restart
+    void RestartButton()
+    {
+        LifeSystem.life.HearthRestart();
+        Restart();
+    }
     public void Restart()
     {
         restart = true;
@@ -78,6 +83,7 @@ public class UIManager : MonoBehaviour
     #region GameExit
     void GameExit()
     {
+        LifeSystem.life.HearthRestart();
         Application.Quit();
     }
     #endregion

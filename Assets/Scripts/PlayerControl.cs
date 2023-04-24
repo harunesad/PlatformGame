@@ -54,6 +54,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("End"))
         {
+            UIManager.continueScore = true;
             GameManager.manager.GameEnd();
         }
     }
@@ -74,6 +75,7 @@ public class PlayerControl : MonoBehaviour
         LifeSystem.life.HearthRemove();
         if (LifeSystem.life.hearth == 0)
         {
+            UIManager.continueScore = false;
             LifeSystem.life.HearthImage();
             UIManager.UI.DeadPanel();
         }
@@ -119,6 +121,7 @@ public class PlayerControl : MonoBehaviour
     IEnumerator SceneLoad()
     {
         yield return new WaitForSeconds(0.4f);
+        UIManager.continueScore = true;
         UIManager.UI.Restart();
     }
 }

@@ -26,10 +26,10 @@ public class LifeSystem : MonoBehaviour
         {
             hearth = 3;
         }
-        if (hearth == 0)
-        {
-            HearthRestart();
-        }
+        //if (hearth == 0)
+        //{
+        //    HearthRestart();
+        //}
 
         HearthImage();
     }
@@ -44,7 +44,7 @@ public class LifeSystem : MonoBehaviour
         PlayerPrefs.SetFloat(hearthKey, hearth);
     }
     #region HearthUpdate
-    void HearthRestart()
+    public void HearthRestart()
     {
         PlayerPrefs.SetFloat(hearthKey, 3);
         hearth = PlayerPrefs.GetFloat(hearthKey);
