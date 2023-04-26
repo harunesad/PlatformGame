@@ -11,7 +11,7 @@ public class LifeSystem : MonoBehaviour
     public float hearth;
     string hearthKey = "Hearth";
     [SerializeField] List<Image> hearths;
-    [SerializeField] Sprite addHearth, removeHearth;
+    [SerializeField] Sprite addHearth;
     private void Awake()
     {
         life = this;
@@ -24,18 +24,10 @@ public class LifeSystem : MonoBehaviour
         }
         else
         {
-            hearth = 3;
+            hearth = 6;
         }
-        //if (hearth == 0)
-        //{
-        //    HearthRestart();
-        //}
 
         HearthImage();
-    }
-    void Update()
-    {
-        
     }
     #region HearthRemove
     public void HearthRemove()
@@ -43,24 +35,25 @@ public class LifeSystem : MonoBehaviour
         hearth--;
         PlayerPrefs.SetFloat(hearthKey, hearth);
     }
+    #endregion
     #region HearthUpdate
     public void HearthRestart()
     {
-        PlayerPrefs.SetFloat(hearthKey, 3);
+        PlayerPrefs.SetFloat(hearthKey, 6);
         hearth = PlayerPrefs.GetFloat(hearthKey);
     }
-    #endregion
     #endregion
     #region HearthUpdate
     public void HearthImage()
     {
-        for (int i = 0; i < hearth; i++)
+        float health = hearth / 2;
+        if (health == 0)
         {
-            hearths[i].sprite = addHearth;
+            hearths[0].fillAmount = 0;
         }
-        for (int i = (int)hearth; i < 3; i++)
+        for (float i = 0; i < health; i+=.5f)
         {
-            hearths[i].sprite = removeHearth;
+            hearths[(int)i].fillAmount += .5f;
         }
     }
     #endregion
