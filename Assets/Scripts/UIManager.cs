@@ -27,12 +27,12 @@ public class UIManager : MonoBehaviour
         }
         if (continueScore)
         {
-            SaveSystem.save.ContinueText(scoreText);
             startPanel.SetActive(false);
             continueScore = false;
             GameManager.manager.GameState(true);
         }
         SaveSystem.save.SaveText(bestScoreText);
+        SaveSystem.save.ContinueText(scoreText);
         //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
         startButton.onClick.AddListener(GameStart);
         exitButton.onClick.AddListener(GameExit);
@@ -90,7 +90,9 @@ public class UIManager : MonoBehaviour
     #region ScoreAdd
     public void ScoreAdd(float inc)
     {
+        scoreCount = PlayerPrefs.GetFloat("ContinueScore");
         scoreCount += inc;
+        PlayerPrefs.SetFloat("ContinueScore", scoreCount);
         scoreText.text = "" + scoreCount.ToString();
     }
     #endregion

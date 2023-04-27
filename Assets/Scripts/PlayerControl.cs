@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class PlayerControl : MonoBehaviour
         GameManager.manager.GameState(false);
 
         LifeSystem.life.HearthRemove();
+        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
         if (LifeSystem.life.hearth == 0)
         {
             UIManager.continueScore = false;

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem save;
-    string bestScoreKey = "HighScore", sceneKey = "Scene", continueScoreKey = "Continue";
+    public string bestScoreKey = "HighScore", sceneKey = "Scene", continueScoreKey = "Continue";
     private void Awake()
     {
         save = this;
