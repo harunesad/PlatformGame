@@ -90,9 +90,10 @@ public class UIManager : MonoBehaviour
     #region ScoreAdd
     public void ScoreAdd(float inc)
     {
-        scoreCount = PlayerPrefs.GetFloat("ContinueScore");
+        Debug.Log(PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey));
+        scoreCount = PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey);
         scoreCount += inc;
-        PlayerPrefs.SetFloat("ContinueScore", scoreCount);
+        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, scoreCount);
         scoreText.text = "" + scoreCount.ToString();
     }
     #endregion

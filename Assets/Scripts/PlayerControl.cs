@@ -56,13 +56,15 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("End"))
         {
             UIManager.continueScore = true;
+            LifeSystem.life.HearthRestart();
+            SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
             GameManager.manager.GameEnd();
         }
     }
     #region Dead
     void Dead()
     {
-        animator.SetBool("Run", false);
+        animator.SetTrigger("Hit");
         if (FindObjectOfType<EnemyControl>() != null)
         {
             EnemyControl.animator.SetBool("Run", false);
@@ -75,6 +77,7 @@ public class PlayerControl : MonoBehaviour
 
         LifeSystem.life.HearthRemove();
         PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
+        Debug.Log(PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey));
         if (LifeSystem.life.hearth == 0)
         {
             UIManager.continueScore = false;
