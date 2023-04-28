@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         PlayerControl.animator.SetBool("Run", false);
         if (FindObjectOfType<EnemyControl>() != null)
         {
-            EnemyControl.animator.SetBool("Run", false);
+            EnemyControl.animator.SetBool("RunLeft", false);
         }
         SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
         UIManager.continueScore = true;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpControl : MonoBehaviour
 {
     [SerializeField] LayerMask groundMask, enemyMask;
-    public bool isGround = false, jumpToEnemy = false;
+    public bool isGround = false;
     [SerializeField] float jumpSpeed = 4;
     void Start()
     {
@@ -19,20 +19,16 @@ public class JumpControl : MonoBehaviour
             return;
         }
         RaycastHit2D jumpHit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, groundMask);
-        RaycastHit2D jumpToEnemyHit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, enemyMask);
-        Jump(jumpHit, jumpToEnemyHit);
-        JumpToEnemy(jumpToEnemyHit);
+        //RaycastHit2D jumpToEnemyHit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, enemyMask);
+        Jump(jumpHit);
+        //JumpToEnemy(jumpToEnemyHit);
     }
     #region Jump
-    void Jump(RaycastHit2D hit, RaycastHit2D jumpToEnemyHit)
+    void Jump(RaycastHit2D hit)
     {
         if (hit.collider != null)
         {
             isGround = true;
-            if (jumpToEnemyHit.collider == null)
-            {
-                jumpToEnemy = false;
-            }
         }
         else
         {
@@ -41,16 +37,6 @@ public class JumpControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             PlayerControl.rb.velocity = new Vector2(PlayerControl.rb.velocity.x, jumpSpeed);
-        }
-    }
-    #endregion
-    #region JumpToEnemy
-    void JumpToEnemy(RaycastHit2D hit)
-    {
-        if (hit.collider != null && !jumpToEnemy)
-        {
-            jumpToEnemy = true;
-            GameManager.manager.EnemyDead(hit.collider.gameObject);
         }
     }
     #endregion

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -45,14 +46,22 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !GetComponentInChildren<JumpControl>().jumpToEnemy)
+        if (collision.gameObject.CompareTag("Head"))
         {
-            Dead();
+            GameManager.manager.EnemyDead(collision.gameObject);
+            Debug.Log(collision.gameObject.name);
+            return;
         }
-        if (collision.gameObject.CompareTag("Fall"))
-        {
-            Dead();
-        }
+        Dead(collision.gameObject, "Enemy");
+        Dead(collision.gameObject, "Fall");
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    Dead();
+        //}
+        //if (collision.gameObject.CompareTag("Fall"))
+        //{
+        //    Dead();
+        //}
         if (collision.gameObject.CompareTag("End"))
         {
             UIManager.continueScore = true;
@@ -62,33 +71,36 @@ public class PlayerControl : MonoBehaviour
         }
     }
     #region Dead
-    void Dead()
+    void Dead(GameObject crashObj, string tag)
     {
-        animator.SetTrigger("Hit");
-        if (FindObjectOfType<EnemyControl>() != null)
+        if (crashObj.CompareTag(tag))
         {
-            EnemyControl.animator.SetBool("Run", false);
-        }
-        SawControl.animator.SetBool("Rotate", false);
-        SawControl.rb.simulated = false;
+            Debug.Log(crashObj.name);
+            animator.SetTrigger("Hit");
+            if (FindObjectOfType<EnemyControl>() != null)
+            {
+                EnemyControl.animator.SetBool("RunLeft", false);
+            }
+            SawControl.animator.SetBool("Rotate", false);
+            SawControl.rb.simulated = false;
 
-        sounds[1].Play();
-        GameManager.manager.GameState(false);
+            sounds[1].Play();
+            GameManager.manager.GameState(false);
 
-        LifeSystem.life.HearthRemove();
-        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
-        Debug.Log(PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey));
-        if (LifeSystem.life.hearth == 0)
-        {
-            UIManager.continueScore = false;
-            LifeSystem.life.HearthImage();
-            UIManager.UI.DeadPanel();
+            LifeSystem.life.HearthRemove();
+            PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
+            if (LifeSystem.life.hearth == 0)
+            {
+                UIManager.continueScore = false;
+                LifeSystem.life.HearthImage();
+                UIManager.UI.DeadPanel();
+            }
+            else
+            {
+                StartCoroutine(SceneLoad());
+            }
+            Destroy(gameObject, 0.5f);
         }
-        else
-        {
-            StartCoroutine(SceneLoad());
-        }
-        Destroy(gameObject, 0.5f);
     }
     #endregion
     #region CoinCollect

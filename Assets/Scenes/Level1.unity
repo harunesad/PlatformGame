@@ -1576,6 +1576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b39ffb64054b4d17ac3008a1db3f6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bestScoreKey: HighScore
+  sceneKey: Scene
+  continueScoreKey: Continue
 --- !u!1001 &553694785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7195,13 +7198,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1965249932, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6531589298786618484, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531589298786618484, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6531589298786618484, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7247,11 +7250,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6531589298786618490, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6531589298786618485, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
 --- !u!1001 &7311267224937876640
 PrefabInstance:

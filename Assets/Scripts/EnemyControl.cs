@@ -23,16 +23,18 @@ public class EnemyControl : MonoBehaviour
         {
             return;
         }
-        animator.SetBool("Run", true);
-        if (gameObject.transform.position.x < -4.5f)
+        animator.SetBool("RunLeft", true);
+        if (gameObject.transform.position.x < -4.25f)
         {
-            rotate = 1;
+            animator.SetBool("RunRight", true);
+            //rotate = 1;
         }
-        else if(gameObject.transform.position.x > -1.5f)
+        else if(gameObject.transform.position.x > -1.25f)
         {
-            rotate = -1;
+            animator.SetBool("LeftRun", true);
+            //rotate = -1;
         }
-        gameObject.transform.localScale = new Vector3(rotate, 1, 1);
-        rb.velocity = new Vector2(rotate * moveSpeed, rb.velocity.y);
+        //gameObject.transform.localScale = new Vector3(rotate, 1, 1);
+        //rb.velocity = new Vector2(rotate * moveSpeed, rb.velocity.y);
     }
 }
