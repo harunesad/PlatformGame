@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
         {
             SpawnManager.spawnManager.Spawn();
         }
-        Application.quitting += LifeSystem.life.HearthRestart;
+        Application.quitting += UIManager.UI.GameExit;
         float h = Input.GetAxis("Horizontal");
         MoveAndRotate(h);
     }

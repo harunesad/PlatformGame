@@ -80,9 +80,10 @@ public class UIManager : MonoBehaviour
     }
     #endregion
     #region GameExit
-    void GameExit()
+    public void GameExit()
     {
         LifeSystem.life.HearthRestart();
+        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
         Application.Quit();
     }
     #endregion
