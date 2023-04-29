@@ -22,35 +22,36 @@ public class UIManager : MonoBehaviour
     {
         if (restart)
         {
-            GameManager.manager.GameState(true);
+            GameManager.manager.isStarted = true;
             startPanel.SetActive(false);
+            GameManager.manager.EnemyAnimControl(true, true);
+            GameManager.manager.TrapAnimControl(true);
+        }
+        else
+        {
+            SaveSystem.save.GetBestScore(bestScoreText);
         }
         if (continueScore)
         {
             startPanel.SetActive(false);
             continueScore = false;
-            GameManager.manager.GameState(true);
+            GameManager.manager.isStarted = true;
+            GameManager.manager.EnemyAnimControl(true, true);
+            GameManager.manager.TrapAnimControl(true);
+            SaveSystem.save.GetContinueScore(scoreText);
         }
-        SaveSystem.save.SaveText(bestScoreText);
-        SaveSystem.save.ContinueText(scoreText);
-        //bestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
+
         startButton.onClick.AddListener(GameStart);
         exitButton.onClick.AddListener(GameExit);
         restartButton.onClick.AddListener(RestartButton);
         lastExitButton.onClick.AddListener(GameExit);
         continueButton.onClick.AddListener(Continue);
     }
-    void Update()
-    {
-        
-    }
     #region DeadPanel
     public void DeadPanel()
     {
         lastScoreText.text = "Score: " + scoreCount;
-        SaveSystem.save.HighScoreUpdated();
-        SaveSystem.save.SaveText(lastBestScoreText);
-        //lastBestScoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
+        SaveSystem.save.GetBestScore(lastBestScoreText);
         restartPanel.SetActive(true);
     }
     #endregion
@@ -58,10 +59,6 @@ public class UIManager : MonoBehaviour
     void RestartButton()
     {
         LifeSystem.life.HearthRestart();
-        Restart();
-    }
-    public void Restart()
-    {
         restart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -77,7 +74,9 @@ public class UIManager : MonoBehaviour
     void GameStart()
     {
         startPanel.SetActive(false);
-        GameManager.manager.GameState(true);
+        GameManager.manager.isStarted = true;
+        GameManager.manager.EnemyAnimControl(true, true);
+        GameManager.manager.TrapAnimControl(true);
     }
     #endregion
     #region GameExit
@@ -90,7 +89,6 @@ public class UIManager : MonoBehaviour
     #region ScoreAdd
     public void ScoreAdd(float inc)
     {
-        Debug.Log(PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey));
         scoreCount = PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey);
         scoreCount += inc;
         PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, scoreCount);

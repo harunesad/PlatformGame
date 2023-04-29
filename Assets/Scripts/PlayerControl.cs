@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
+using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
     public static Rigidbody2D rb;
@@ -15,13 +12,8 @@ public class PlayerControl : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
-    void Start()
-    {
-        
-    }
     void Update()
     {
-        //GameManager.manager.GameStop();
         if (!GameManager.manager.isStarted)
         {
             return;
@@ -48,44 +40,37 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Head"))
         {
-            GameManager.manager.EnemyDead(collision.gameObject);
-            Debug.Log(collision.gameObject.name);
+            GameManager.manager.EnemyDead(collision.gameObject.transform.parent.gameObject);
+            Rigidbody2D playerRb = FindObjectOfType<PlayerControl>().gameObject.GetComponent<Rigidbody2D>();
+            playerRb.velocity = new Vector2(playerRb.position.x, playerRb.position.y + 7);
             return;
         }
-        Dead(collision.gameObject, "Enemy");
-        Dead(collision.gameObject, "Fall");
-        //if (collision.gameObject.CompareTag("Enemy"))
-        //{
-        //    Dead();
-        //}
-        //if (collision.gameObject.CompareTag("Fall"))
-        //{
-        //    Dead();
-        //}
+
+        //Dead(collision.gameObject, "Trap");
+        //Dead(collision.gameObject, "Enemy");
+        //Dead(collision.gameObject, "Fall");
+        Dead(collision.gameObject);
+
         if (collision.gameObject.CompareTag("End"))
         {
             UIManager.continueScore = true;
             LifeSystem.life.HearthRestart();
-            SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
+            SaveSystem.save.SetContinueScore(UIManager.UI.scoreCount);
             GameManager.manager.GameEnd();
         }
     }
     #region Dead
-    void Dead(GameObject crashObj, string tag)
+    void Dead(GameObject crashObj)
     {
-        if (crashObj.CompareTag(tag))
+        if (crashObj.layer == 7)
         {
-            Debug.Log(crashObj.name);
             animator.SetTrigger("Hit");
-            if (FindObjectOfType<EnemyControl>() != null)
-            {
-                EnemyControl.animator.SetBool("RunLeft", false);
-            }
-            SawControl.animator.SetBool("Rotate", false);
-            SawControl.rb.simulated = false;
+
+            GameManager.manager.EnemyAnimControl(true, false);
+            GameManager.manager.TrapAnimControl(false);
 
             sounds[1].Play();
-            GameManager.manager.GameState(false);
+            GameManager.manager.isStarted = false;
 
             LifeSystem.life.HearthRemove();
             PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
@@ -109,7 +94,6 @@ public class PlayerControl : MonoBehaviour
         Destroy(obj, 0.25f);
         UIManager.UI.ScoreAdd(score);
         sounds[0].Play();
-        SaveSystem.save.HighScoreUpdated();
     }
     #endregion
     #region MoveAndRotate
@@ -139,6 +123,7 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f);
         UIManager.continueScore = true;
-        UIManager.UI.Restart();
+        UIManager.restart = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

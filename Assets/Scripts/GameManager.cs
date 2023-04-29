@@ -7,40 +7,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
     public bool isStarted = false;
-    [SerializeField] Animator animator;
+    [SerializeField] List<Animator> enemyAnims, trapAnims;
     private void Awake()
     {
         manager = this;
     }
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-
-    }
-    #region GameState
-    public void GameState(bool state)
-    {
-        isStarted = state;
-    }
-    #endregion
     #region GameEnd
     public void GameEnd()
     {
         isStarted = false;
         StartCoroutine(SceneLoad());
-        SawControl.animator.SetBool("Rotate", false);
-        SawControl.rb.simulated = false;
+        TrapAnimControl(false);
         PlayerControl.animator.SetBool("Run", false);
-        if (FindObjectOfType<EnemyControl>() != null)
-        {
-            EnemyControl.animator.SetBool("RunLeft", false);
-        }
-        SaveSystem.save.ContinueScore(UIManager.UI.scoreCount);
+        EnemyAnimControl(true, false);
+        SaveSystem.save.SetContinueScore(UIManager.UI.scoreCount);
+        SaveSystem.save.SetBestScore();
         UIManager.continueScore = true;
-        GameState(false);
+        UIManager.restart = true;
+        isStarted = false;
     }
     #endregion
     #region SceneLoad
@@ -55,10 +39,43 @@ public class GameManager : MonoBehaviour
     public void EnemyDead(GameObject enemy)
     {
         UIManager.UI.ScoreAdd(10);
-        SaveSystem.save.HighScoreUpdated();
-        EnemyControl.animator.SetTrigger("Dead");
-        Destroy(FindObjectOfType<EnemyControl>());
-        Destroy(enemy, 1);
+        EnemyAnimControl(false, false);
+        Destroy(enemy, .45f);
+    }
+    #endregion
+    #region EnemyAnimControl
+    public void EnemyAnimControl(bool enemyState, bool runState)
+    {
+        if (enemyState)
+        {
+            for (int i = 0; i < enemyAnims.Count; i++)
+            {
+                enemyAnims[i].SetBool("Run", runState);
+                if (!runState)
+                {
+                    Destroy(enemyAnims[i]);
+                }
+            }
+            return;
+        }
+        for (int i = 0; i < enemyAnims.Count; i++)
+        {
+            enemyAnims[i].SetTrigger("Dead");
+            Destroy(enemyAnims[i]);
+        }
+    }
+    #endregion
+    #region TrapAnimControl
+    public void TrapAnimControl(bool trapState)
+    {
+        for (int i = 0; i < trapAnims.Count; i++)
+        {
+            trapAnims[i].SetBool("Rotate", trapState);
+            if (!trapState)
+            {
+                trapAnims[i].gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            }
+        }
     }
     #endregion
 }

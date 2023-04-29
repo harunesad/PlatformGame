@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class JumpControl : MonoBehaviour
@@ -8,10 +5,6 @@ public class JumpControl : MonoBehaviour
     [SerializeField] LayerMask groundMask, enemyMask;
     public bool isGround = false;
     [SerializeField] float jumpSpeed = 4;
-    void Start()
-    {
-        
-    }
     void Update()
     {
         if (!GameManager.manager.isStarted)
@@ -19,9 +12,7 @@ public class JumpControl : MonoBehaviour
             return;
         }
         RaycastHit2D jumpHit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, groundMask);
-        //RaycastHit2D jumpToEnemyHit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, enemyMask);
         Jump(jumpHit);
-        //JumpToEnemy(jumpToEnemyHit);
     }
     #region Jump
     void Jump(RaycastHit2D hit)

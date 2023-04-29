@@ -8,38 +8,31 @@ public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem save;
     public string bestScoreKey = "HighScore", sceneKey = "Scene", continueScoreKey = "Continue";
+
     private void Awake()
     {
         save = this;
     }
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
     #region ContinueScore
-    public void ContinueScore(float score)
+    public void SetContinueScore(float score)
     {
         PlayerPrefs.SetFloat(continueScoreKey, score);
     }
     #endregion
     #region ConstinueText
-    public void ContinueText(TextMeshProUGUI scoreText)
+    public void GetContinueScore(TextMeshProUGUI scoreText)
     {
         scoreText.text = "" + PlayerPrefs.GetFloat(continueScoreKey);
     }
     #endregion
     #region SaveText
-    public void SaveText(TextMeshProUGUI scoreText)
+    public void GetBestScore(TextMeshProUGUI scoreText)
     {
         scoreText.text = "Best Score: " + PlayerPrefs.GetFloat(bestScoreKey);
     }
     #endregion
     #region HighScoreUpdated
-    public void HighScoreUpdated()
+    public void SetBestScore()
     {
         if (UIManager.UI.scoreCount >= PlayerPrefs.GetFloat(bestScoreKey))
         {

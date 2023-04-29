@@ -4,13 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fall
   - Enemy
   - Coin
   - SuperCoin
   - End
   - Apple
-  - Trap
   - Head
   layers:
   - Default
@@ -21,8 +19,8 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
-  - 
+  - Edge
+  - Bullet
   - 
   - 
   - 

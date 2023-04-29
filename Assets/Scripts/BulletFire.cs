@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletFire : MonoBehaviour
@@ -10,7 +7,7 @@ public class BulletFire : MonoBehaviour
     GameObject player;
     private void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     void Start()
     {
@@ -22,11 +19,24 @@ public class BulletFire : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.layer == 7 && collision.gameObject.name == "Enemy")
         {
             Destroy(gameObject);
             GameManager.manager.EnemyDead(collision.gameObject);
+            return;
+        }
+
+        BulletDestroy(collision.gameObject, 6);
+        BulletDestroy(collision.gameObject, 8);
+
+        //BulletDestroy(collision.gameObject, "Ground");
+        //BulletDestroy(collision.gameObject, "Edge");
+    }
+    void BulletDestroy(GameObject obj, int layer)
+    {
+        if (obj.layer == layer)
+        {
+            Destroy(gameObject);
         }
     }
-
 }
