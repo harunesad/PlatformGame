@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         {
             enemyAnims[i].SetTrigger("Dead");
             Destroy(enemyAnims[i]);
+            enemyAnims.RemoveAt(i);
         }
     }
     #endregion

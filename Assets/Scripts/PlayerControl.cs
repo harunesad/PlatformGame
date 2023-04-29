@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
         {
             SpawnManager.spawnManager.Spawn();
         }
+        Application.quitting += LifeSystem.life.HearthRestart;
         float h = Input.GetAxis("Horizontal");
         MoveAndRotate(h);
     }
@@ -45,12 +46,7 @@ public class PlayerControl : MonoBehaviour
             playerRb.velocity = new Vector2(playerRb.position.x, playerRb.position.y + 7);
             return;
         }
-
-        //Dead(collision.gameObject, "Trap");
-        //Dead(collision.gameObject, "Enemy");
-        //Dead(collision.gameObject, "Fall");
         Dead(collision.gameObject);
-
         if (collision.gameObject.CompareTag("End"))
         {
             UIManager.continueScore = true;
@@ -65,13 +61,10 @@ public class PlayerControl : MonoBehaviour
         if (crashObj.layer == 7)
         {
             animator.SetTrigger("Hit");
-
             GameManager.manager.EnemyAnimControl(true, false);
             GameManager.manager.TrapAnimControl(false);
-
             sounds[1].Play();
             GameManager.manager.isStarted = false;
-
             LifeSystem.life.HearthRemove();
             PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
             if (LifeSystem.life.hearth == 0)

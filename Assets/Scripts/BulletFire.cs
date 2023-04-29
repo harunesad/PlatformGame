@@ -28,9 +28,6 @@ public class BulletFire : MonoBehaviour
 
         BulletDestroy(collision.gameObject, 6);
         BulletDestroy(collision.gameObject, 8);
-
-        //BulletDestroy(collision.gameObject, "Ground");
-        //BulletDestroy(collision.gameObject, "Edge");
     }
     void BulletDestroy(GameObject obj, int layer)
     {
