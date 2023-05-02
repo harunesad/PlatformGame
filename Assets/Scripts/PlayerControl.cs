@@ -51,7 +51,6 @@ public class PlayerControl : MonoBehaviour
         {
             UIManager.continueScore = true;
             LifeSystem.life.HearthRestart();
-            SaveSystem.save.SetContinueScore(UIManager.UI.scoreCount);
             GameManager.manager.GameEnd();
         }
     }
@@ -66,7 +65,8 @@ public class PlayerControl : MonoBehaviour
             sounds[1].Play();
             GameManager.manager.isStarted = false;
             LifeSystem.life.HearthRemove();
-            PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
+            //PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
+            UIManager.scoreCount -= UIManager.UI.scoreLevel;
             if (LifeSystem.life.hearth == 0)
             {
                 UIManager.continueScore = false;

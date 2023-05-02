@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     public static bool restart = false;
     public static bool continueScore = false;
     [SerializeField] TextMeshProUGUI scoreText, bestScoreText, lastScoreText, lastBestScoreText;
-    public float scoreCount;
+    public static float scoreCount;
+    public float scoreLevel;
     [SerializeField] GameObject startPanel, restartPanel;
     [SerializeField] Button startButton, exitButton, restartButton, lastExitButton, continueButton;
     private void Awake()
@@ -38,9 +39,9 @@ public class UIManager : MonoBehaviour
             GameManager.manager.isStarted = true;
             GameManager.manager.EnemyAnimControl(true, true);
             GameManager.manager.TrapAnimControl(true);
-            SaveSystem.save.GetContinueScore(scoreText);
         }
 
+        scoreText.text = "" + scoreCount;
         startButton.onClick.AddListener(GameStart);
         exitButton.onClick.AddListener(GameExit);
         restartButton.onClick.AddListener(RestartButton);
@@ -83,16 +84,15 @@ public class UIManager : MonoBehaviour
     public void GameExit()
     {
         LifeSystem.life.HearthRestart();
-        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
         Application.Quit();
     }
     #endregion
     #region ScoreAdd
     public void ScoreAdd(float inc)
     {
-        scoreCount = PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey);
+        //scoreCount = PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey);
+        scoreLevel += inc;
         scoreCount += inc;
-        PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, scoreCount);
         scoreText.text = "" + scoreCount.ToString();
     }
     #endregion

@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
         TrapAnimControl(false);
         PlayerControl.animator.SetBool("Run", false);
         EnemyAnimControl(true, false);
-        SaveSystem.save.SetContinueScore(UIManager.UI.scoreCount);
         SaveSystem.save.SetBestScore();
         UIManager.continueScore = true;
         UIManager.restart = true;

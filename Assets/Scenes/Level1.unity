@@ -1077,7 +1077,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bestScoreKey: HighScore
   sceneKey: Scene
-  continueScoreKey: Continue
 --- !u!1001 &553694785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2315,7 +2314,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b05f544a2a9f74bce8585eb53862930e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.699
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3323,7 +3322,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 756908899}
   lastScoreText: {fileID: 2055346090}
   lastBestScoreText: {fileID: 265693273}
-  scoreCount: 0
+  scoreLevel: 0
   startPanel: {fileID: 1678813710}
   restartPanel: {fileID: 1950103203}
   startButton: {fileID: 926534750}
@@ -4796,6 +4795,14 @@ PrefabInstance:
     - target: {fileID: 1038041731, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.372
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152415006480694246, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747417023262938299, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731668550977581544, guid: 34d15b2cce9b9344db80d9ae09d50ad9, type: 3}
       propertyPath: m_RootOrder

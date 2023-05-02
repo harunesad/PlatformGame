@@ -7,24 +7,12 @@ using UnityEngine.SceneManagement;
 public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem save;
-    public string bestScoreKey = "HighScore", sceneKey = "Scene", continueScoreKey = "Continue";
+    public string bestScoreKey = "HighScore", sceneKey = "Scene";
 
     private void Awake()
     {
         save = this;
     }
-    #region ContinueScore
-    public void SetContinueScore(float score)
-    {
-        PlayerPrefs.SetFloat(continueScoreKey, score);
-    }
-    #endregion
-    #region ConstinueText
-    public void GetContinueScore(TextMeshProUGUI scoreText)
-    {
-        scoreText.text = "" + PlayerPrefs.GetFloat(continueScoreKey);
-    }
-    #endregion
     #region SaveText
     public void GetBestScore(TextMeshProUGUI scoreText)
     {
@@ -34,9 +22,9 @@ public class SaveSystem : MonoBehaviour
     #region HighScoreUpdated
     public void SetBestScore()
     {
-        if (UIManager.UI.scoreCount >= PlayerPrefs.GetFloat(bestScoreKey))
+        if (UIManager.scoreCount >= PlayerPrefs.GetFloat(bestScoreKey))
         {
-            PlayerPrefs.SetFloat(bestScoreKey, UIManager.UI.scoreCount);
+            PlayerPrefs.SetFloat(bestScoreKey, UIManager.scoreCount);
         }
     }
     #endregion

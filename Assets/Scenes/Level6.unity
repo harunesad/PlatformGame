@@ -1823,7 +1823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8168299790095423430, guid: a2c291e1ad35fa546bf5b33a35d27273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 8168299790095423430, guid: a2c291e1ad35fa546bf5b33a35d27273, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2588,7 +2588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 651134154058713548, guid: f776b7e50e5752e4fb3853c668ca1d92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 651134154058713548, guid: f776b7e50e5752e4fb3853c668ca1d92, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3250,7 +3250,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 1925468542}
   lastScoreText: {fileID: 1925468537}
   lastBestScoreText: {fileID: 1925468536}
-  scoreCount: 0
+  scoreLevel: 0
   startPanel: {fileID: 1925468543}
   restartPanel: {fileID: 1925468538}
   startButton: {fileID: 1925468541}
