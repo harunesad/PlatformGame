@@ -1125,7 +1125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bestScoreKey: HighScore
   sceneKey: Scene
-  continueScoreKey: Continue
 --- !u!1001 &553694785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3519,7 +3518,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 1567048474}
   lastScoreText: {fileID: 1567048469}
   lastBestScoreText: {fileID: 1567048468}
-  scoreCount: 0
+  scoreLevel: 0
   startPanel: {fileID: 1567048475}
   restartPanel: {fileID: 1567048470}
   startButton: {fileID: 1567048473}
@@ -4785,6 +4784,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+--- !u!1 &6531589300613028349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6531589298786618490, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+  m_PrefabInstance: {fileID: 6531589300613028348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6531589300613028350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531589300613028349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18a947a92b51241a460da10c601317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  maxPosX: -1.5
+  minPosX: -4.5
 --- !u!1001 &7311267224937876640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4842,6 +4861,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
+--- !u!1 &7311267224937876641 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311267223409091852, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
+  m_PrefabInstance: {fileID: 7311267224937876640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7311267224937876642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311267224937876641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598da8a9d421d94498050fd1489d88f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  maxPosY: 3
+  minPosY: -2
 --- !u!1001 &7731668550399064718
 PrefabInstance:
   m_ObjectHideFlags: 0

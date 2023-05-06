@@ -207,6 +207,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &96140788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6531589298786618490, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+  m_PrefabInstance: {fileID: 6531589300613028348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &106946840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1018,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &528952200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311267223409091852, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
+  m_PrefabInstance: {fileID: 7311267224937876640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &528952201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528952200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598da8a9d421d94498050fd1489d88f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  maxPosY: 2
+  minPosY: 1
 --- !u!1001 &544847803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1125,7 +1150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bestScoreKey: HighScore
   sceneKey: Scene
-  continueScoreKey: Continue
 --- !u!1001 &553694785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3338,6 +3362,21 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6369205087662535770, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
   m_PrefabInstance: {fileID: 6531589300613028348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495458638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96140788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18a947a92b51241a460da10c601317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  maxPosX: -1
+  minPosX: -4.25
 --- !u!1 &1562023750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,7 +3617,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 891423040}
   lastScoreText: {fileID: 891423035}
   lastBestScoreText: {fileID: 891423034}
-  scoreCount: 0
+  scoreLevel: 0
   startPanel: {fileID: 891423041}
   restartPanel: {fileID: 891423036}
   startButton: {fileID: 891423039}

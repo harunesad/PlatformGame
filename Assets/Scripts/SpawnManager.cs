@@ -10,14 +10,6 @@ public class SpawnManager : MonoBehaviour
     {
         spawnManager = this;
     }
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
     #region Spawn
     public void Spawn()
     {

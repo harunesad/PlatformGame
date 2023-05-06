@@ -800,6 +800,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 651134154058713548, guid: f776b7e50e5752e4fb3853c668ca1d92, type: 3}
   m_PrefabInstance: {fileID: 651134153911412684}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &464596104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311267223409091852, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
+  m_PrefabInstance: {fileID: 7311267224937876640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &468754965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -871,6 +876,21 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7311267223409091855, guid: 7f7f521dec8ccf342ba29f5e1a0f6af1, type: 3}
   m_PrefabInstance: {fileID: 7311267224937876640}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &500640837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464596104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598da8a9d421d94498050fd1489d88f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  maxPosY: 3
+  minPosY: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bestScoreKey: HighScore
   sceneKey: Scene
-  continueScoreKey: Continue
 --- !u!1001 &553694785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1199,6 +1218,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2884031317281026580, guid: e00e8df4cafdcf44082b5b417fef7065, type: 3}
   m_PrefabInstance: {fileID: 589542269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &649886582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6531589298786618490, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
+  m_PrefabInstance: {fileID: 6531589300613028348}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &682837775
 PrefabInstance:
@@ -2982,6 +3006,21 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6369205087662535770, guid: 0342fdd7c9f8245d58b367fbcd65af4f, type: 3}
   m_PrefabInstance: {fileID: 6531589300613028348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495458641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649886582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18a947a92b51241a460da10c601317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  maxPosX: -1.75
+  minPosX: -4
 --- !u!1 &1514879532
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,7 +3525,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 1556024379}
   lastScoreText: {fileID: 1556024374}
   lastBestScoreText: {fileID: 1556024373}
-  scoreCount: 0
+  scoreLevel: 0
   startPanel: {fileID: 1556024380}
   restartPanel: {fileID: 1556024375}
   startButton: {fileID: 1556024378}

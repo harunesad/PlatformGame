@@ -25,10 +25,10 @@ public class BulletFire : MonoBehaviour
             GameManager.manager.EnemyDead(collision.gameObject);
             return;
         }
-
         BulletDestroy(collision.gameObject, 6);
         BulletDestroy(collision.gameObject, 8);
     }
+    #region BulletDestroy
     void BulletDestroy(GameObject obj, int layer)
     {
         if (obj.layer == layer)
@@ -36,4 +36,5 @@ public class BulletFire : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 }

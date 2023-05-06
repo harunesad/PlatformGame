@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.manager.isStarted = true;
             startPanel.SetActive(false);
-            GameManager.manager.EnemyAnimControl(true, true);
+            GameManager.manager.EnemyAnimControl(true, true, 0);
             GameManager.manager.TrapAnimControl(true);
         }
         else
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
             startPanel.SetActive(false);
             continueScore = false;
             GameManager.manager.isStarted = true;
-            GameManager.manager.EnemyAnimControl(true, true);
+            GameManager.manager.EnemyAnimControl(true, true, 0);
             GameManager.manager.TrapAnimControl(true);
         }
 
@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
     {
         startPanel.SetActive(false);
         GameManager.manager.isStarted = true;
-        GameManager.manager.EnemyAnimControl(true, true);
+        GameManager.manager.EnemyAnimControl(true, true, 0);
         GameManager.manager.TrapAnimControl(true);
     }
     #endregion
@@ -90,7 +90,6 @@ public class UIManager : MonoBehaviour
     #region ScoreAdd
     public void ScoreAdd(float inc)
     {
-        //scoreCount = PlayerPrefs.GetFloat(SaveSystem.save.continueScoreKey);
         scoreLevel += inc;
         scoreCount += inc;
         scoreText.text = "" + scoreCount.ToString();

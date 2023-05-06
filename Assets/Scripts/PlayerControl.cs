@@ -60,12 +60,11 @@ public class PlayerControl : MonoBehaviour
         if (crashObj.layer == 7)
         {
             animator.SetTrigger("Hit");
-            GameManager.manager.EnemyAnimControl(true, false);
+            GameManager.manager.EnemyAnimControl(true, false, 0);
             GameManager.manager.TrapAnimControl(false);
             sounds[1].Play();
             GameManager.manager.isStarted = false;
             LifeSystem.life.HearthRemove();
-            //PlayerPrefs.SetFloat(SaveSystem.save.continueScoreKey, 0);
             UIManager.scoreCount -= UIManager.UI.scoreLevel;
             if (LifeSystem.life.hearth == 0)
             {

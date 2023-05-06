@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SceneLoad());
         TrapAnimControl(false);
         PlayerControl.animator.SetBool("Run", false);
-        EnemyAnimControl(true, false);
+        EnemyAnimControl(true, false, 0);
         SaveSystem.save.SetBestScore();
         UIManager.continueScore = true;
         UIManager.restart = true;
@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
     public void EnemyDead(GameObject enemy)
     {
         UIManager.UI.ScoreAdd(10);
-        EnemyAnimControl(false, false);
+        EnemyAnimControl(false, false, 0);
         Destroy(enemy, .45f);
     }
     #endregion
     #region EnemyAnimControl
-    public void EnemyAnimControl(bool enemyState, bool runState)
+    public void EnemyAnimControl(bool enemyState, bool runState, int index)
     {
         if (enemyState)
         {
@@ -57,12 +57,8 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
-        for (int i = 0; i < enemyAnims.Count; i++)
-        {
-            enemyAnims[i].SetTrigger("Dead");
-            Destroy(enemyAnims[i]);
-            enemyAnims.RemoveAt(i);
-        }
+        enemyAnims[index].SetTrigger("Dead");
+        enemyAnims.RemoveAt(index);
     }
     #endregion
     #region TrapAnimControl

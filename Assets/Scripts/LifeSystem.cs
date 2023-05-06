@@ -26,7 +26,6 @@ public class LifeSystem : MonoBehaviour
         {
             hearth = 6;
         }
-
         HearthImage();
     }
     #region HearthRemove
