@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         SaveSystem.save.SetBestScore();
         UIManager.continueScore = true;
         UIManager.restart = true;
-        isStarted = false;
     }
     #endregion
     #region SceneLoad
